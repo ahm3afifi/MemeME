@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MemeCreatorVC.swift
 //  MemeMe
 //
 //  Created by Ahmed Afifi on 4/8/19.
@@ -41,9 +41,11 @@ class MemeCreatorVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
         super.viewWillAppear(animated)
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         subscribeToKeyboardNotifications()
+        shareButton.isEnabled = (imagePickerView.image != nil) ? true : false
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         unsubscribeFromKeyboardNotifications()
     }
     
@@ -66,7 +68,8 @@ class MemeCreatorVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
     
     @objc func keyboardWillShow(_ notification: Notification) {
         if bottomText.isEditing {
-        view.frame.origin.y -= getKeyboardHeight(notification)
+    //  view.frame.origin.y -= getKeyboardHeight(notification)
+        view.frame.origin.y = getKeyboardHeight(notification) * (-1)
         } else {
         view.frame.origin.y = 0
         }
