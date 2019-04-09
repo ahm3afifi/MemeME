@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+class MemeCreatorVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var imagePickerView: UIImageView!
     @IBOutlet weak var topToolbar: UINavigationBar!
@@ -22,21 +22,20 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        topText.text = "TOP"
-        bottomText.text = "BOTTOM"
-        topText.textAlignment = .center
-        bottomText.textAlignment = .center
-        topText.delegate = self
-        bottomText.delegate = self
-        topText.defaultTextAttributes = memeTextAttributes
-        bottomText.defaultTextAttributes = memeTextAttributes
+        configureTextField(topText)
+        configureTextField(bottomText)
     }
     
-    let memeTextAttributes: [NSAttributedString.Key: Any] = [
-        NSAttributedString.Key.strokeColor: UIColor.black,
-        NSAttributedString.Key.foregroundColor: UIColor.white,
-        NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-        NSAttributedString.Key.strokeWidth: -4 ]
+    func configureTextField(_ textfield: UITextField) {
+        textfield.textAlignment = .center
+        textfield.delegate = self
+        textfield.defaultTextAttributes = [
+            NSAttributedString.Key.strokeColor: UIColor.black,
+            NSAttributedString.Key.foregroundColor: UIColor.white,
+            NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+            NSAttributedString.Key.strokeWidth: -4 ]
+    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -88,18 +87,19 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     // Choose an image from Album
     @IBAction func pickAnImageFromAlbum(_ sender: Any) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary
-        present(imagePicker, animated: true, completion: nil)
+        pickAnImage(.photoLibrary)
     }
     
     // capture a new photo from camera
     @IBAction func pickAnImageFromCamera(_ sender: Any) {
-        let camerButton = UIImagePickerController()
-        camerButton.delegate = self
-        camerButton.sourceType = .camera
-        present(camerButton, animated: true, completion: nil)
+        pickAnImage(.camera)
+    }
+    
+    func pickAnImage(_ source: UIImagePickerController.SourceType) {
+        let pickerController = UIImagePickerController()
+        pickerController.delegate = self
+        pickerController.sourceType = source
+        present(pickerController, animated: true, completion: nil)
     }
     
     // to pick an image from gallery
