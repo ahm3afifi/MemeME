@@ -12,7 +12,6 @@ class SentMemeCollectionVC: UICollectionViewController {
     
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     
-
     var memes: [Meme]! {
         let object = UIApplication.shared.delegate
         let appDelegate = object as! AppDelegate
@@ -36,8 +35,6 @@ class SentMemeCollectionVC: UICollectionViewController {
         self.tabBarController?.tabBar.isHidden = false
     }
     
-    
-    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return memes.count
     }
@@ -46,6 +43,7 @@ class SentMemeCollectionVC: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"SentMemeCollectionViewCell" , for: indexPath) as! SentMemeCollectionViewCell
         let currentMeme = memes[indexPath.row]
         cell.memeImageView.image = currentMeme.originalImage
+        cell.memesLabel?.text = memes[indexPath.row].topText + "..." + memes[indexPath.row].bottomText
         return cell
     }
     
