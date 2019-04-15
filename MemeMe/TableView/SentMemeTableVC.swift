@@ -23,7 +23,7 @@ class SentMemeTableVC: UITableViewController {
         tableView.dataSource = self
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         tableView.reloadData()
     }
     
