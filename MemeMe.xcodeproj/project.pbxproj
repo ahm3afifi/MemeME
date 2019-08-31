@@ -62,11 +62,11 @@
 		766C3906225AC1C600933A14 /* MemeMe */ = {
 			isa = PBXGroup;
 			children = (
+				76C63B46231B18F4008CC59F /* Model */,
+				76C63B45231B18BA008CC59F /* Controller */,
 				769D20AD2262378E007EEA0D /* CollectionView */,
 				769D20AE226237BE007EEA0D /* TableView */,
 				766C3907225AC1C600933A14 /* AppDelegate.swift */,
-				76DA3239225C06060039B6FE /* Meme.swift */,
-				766C3909225AC1C600933A14 /* MemeCreatorVC.swift */,
 				766C390B225AC1C600933A14 /* Main.storyboard */,
 				766C390E225AC1C700933A14 /* Assets.xcassets */,
 				766C3910225AC1C700933A14 /* LaunchScreen.storyboard */,
@@ -90,6 +90,22 @@
 				769D20A722620594007EEA0D /* SentMemeTableVC.swift */,
 			);
 			path = TableView;
+			sourceTree = "<group>";
+		};
+		76C63B45231B18BA008CC59F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				766C3909225AC1C600933A14 /* MemeCreatorVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		76C63B46231B18F4008CC59F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				76DA3239225C06060039B6FE /* Meme.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
